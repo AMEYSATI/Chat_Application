@@ -19,7 +19,7 @@ const Room = () => {
 
 
   useEffect(() => {
-    fetch("http://localhost:3001/auth/me", {
+    fetch("https://chat-application-4ik8.onrender.com/auth/me", {
       method: "GET",
       credentials: "include",
     })
@@ -27,7 +27,7 @@ const Room = () => {
       .then((data) => {
         if (data.id) {
           setUserId(data.id);
-          const newSocket = io("http://localhost:3001", {
+          const newSocket = io("https://chat-application-4ik8.onrender.com", {
             transports: ["websocket"],
             withCredentials: true,
             auth: { token: data.token },
@@ -45,7 +45,7 @@ const Room = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:3001/auth/users", {
+    fetch("https://chat-application-4ik8.onrender.com/auth/users", {
       method: "GET",
       credentials: "include",
     })
@@ -56,7 +56,7 @@ const Room = () => {
 
   useEffect(() => {
     if (searchQuery.trim()) {
-      fetch(`http://localhost:3001/auth/search?query=${searchQuery}`, {
+      fetch(`https://chat-application-4ik8.onrender.com/auth/search?query=${searchQuery}`, {
         method: "GET",
         credentials: "include",
       })
@@ -73,7 +73,7 @@ const Room = () => {
     
     const chatId = userId < selectedUser ? `${userId}_${selectedUser}` : `${selectedUser}_${userId}`;
     
-    fetch(`http://localhost:3001/messages/${chatId}`, {
+    fetch(`https://chat-application-4ik8.onrender.com/messages/${chatId}`, {
       method: "GET",
       credentials: "include",
     })
@@ -96,7 +96,7 @@ const Room = () => {
     formData.append("name", profileName);
     if (profilePic) formData.append("profile_pic", profilePic);
 
-    fetch("http://localhost:3001/auth/update-profile", {
+    fetch("https://chat-application-4ik8.onrender.com/auth/update-profile", {
       method: "POST",
       credentials: "include",
       body: formData,
@@ -166,7 +166,7 @@ const Room = () => {
 
 {users.map((user, index) => (
   <button key={user.id || index} className={`flex items-center w-full p-2 text-left rounded-lg ${selectedUser === user.id ? "bg-blue-600" : "bg-gray-700 hover:bg-gray-600"}`} onClick={() => setSelectedUser(user.id)}>
-    <img src={`http://localhost:3001/uploads/${user.profile_pic}`} alt="Profile" className="w-10 h-10 rounded-full object-cover mr-3" />
+    <img src={`https://chat-application-4ik8.onrender.com/uploads/${user.profile_pic}`} alt="Profile" className="w-10 h-10 rounded-full object-cover mr-3" />
     <span>{user.name || `User ${user.id || index}`}</span>
   </button>
 ))}
@@ -227,9 +227,9 @@ const Room = () => {
 
     {msg.file_path && (
       msg.file_path.endsWith(".mp4") || msg.file_path.endsWith(".webm") ? (
-        <video controls src={`http://localhost:3001/uploads/messages/${msg.file_path}`} width="250" />
+        <video controls src={`https://chat-application-4ik8.onrender.com/uploads/messages/${msg.file_path}`} width="250" />
       ) : (
-        <img src={`http://localhost:3001/uploads/messages/${msg.file_path}`} alt="Sent media" width="250" />
+        <img src={`https://chat-application-4ik8.onrender.com/uploads/messages/${msg.file_path}`} alt="Sent media" width="250" />
       )
     )}
   </div>

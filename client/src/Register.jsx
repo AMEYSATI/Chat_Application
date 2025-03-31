@@ -33,7 +33,7 @@ function Register() {
 
         try {
             const response = await axios.post(
-                "http://localhost:3001/auth/register",
+                "https://chat-application-4ik8.onrender.com/auth/register",
                 formData,
                 { 
                     withCredentials: true,
