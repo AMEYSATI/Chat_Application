@@ -17,7 +17,7 @@ const port = 3001;
 
 // Middleware
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:3000","https://chat-application-1-8qrw.onrender.com/login"],
+  origin: ["http://localhost:5173", "http://localhost:3000","https://chat-application-1-8qrw.onrender.com"],
   credentials: true, 
   methods: ["GET", "POST", "PUT", "DELETE"]
 }));
@@ -33,7 +33,7 @@ const server = createServer(app);
 // Define `io` before using it
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173", "http://localhost:3000","https://chat-application-1-8qrw.onrender.com/login"],
+    origin: ["http://localhost:5173", "http://localhost:3000","https://chat-application-1-8qrw.onrender.com"],
     credentials: true,
   },
 });
