@@ -99,8 +99,8 @@ router.post("/login", async (req, res) => {
         // Set cookie with security best practices
         res.cookie("token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production", // Secure only in production
-            sameSite: "lax",
+            secure: true, // Secure only in production
+            sameSite: "None",
         });
 
         res.status(200).json({
